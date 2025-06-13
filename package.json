@@ -1,5 +1,9 @@
 {
+ HEAD
   "name": "framekit-app",
+
+  "name": "instaframe-production",
+ b256a892af546b7725276ed00b04c0318dd97ad2
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
@@ -11,7 +15,12 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+HEAD
     "@vitejs/plugin-react": "^4.5.2",
     "vite": "^4.5.0"
+
+    "vite": "^4.5.0",
+    "@vitejs/plugin-react": "^4.0.0"
+ b256a892af546b7725276ed00b04c0318dd97ad2
   }
 }
