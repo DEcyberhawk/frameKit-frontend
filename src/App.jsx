@@ -1,4 +1,3 @@
- HEAD
 import React, { useState } from "react";
 
 function App() {
@@ -12,9 +11,7 @@ function App() {
   const handleGenerateReceipt = async () => {
     if (receiptInfo.name && receiptInfo.amount) {
       try {
-       const API_URL = import.meta.env.VITE_API_BASE_URL;
-const response = await fetch(`${API_URL}/api/receipt`, {
-
+        const response = await fetch("http://localhost:5000/api/receipt", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(receiptInfo),
@@ -116,12 +113,6 @@ const response = await fetch(`${API_URL}/api/receipt`, {
       <footer style={{ textAlign: 'center', fontSize: '0.8rem', color: '#888', marginTop: '4rem' }}>
         © 2025 FrameKit.app – All rights reserved
       </footer>
-
-function App() {
-  return (
-    <div>
-      <h1>Welcome to InstaFrame</h1>
- b256a892af546b7725276ed00b04c0318dd97ad2
     </div>
   );
 }
