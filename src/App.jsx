@@ -1,38 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+//import './App.css';
 
-const App = () => {
-  const [backendStatus, setBackendStatus] = useState('⏳ Connecting to backend...');
-  const [apiURL, setApiURL] = useState(import.meta.env.VITE_API_URL || 'Not Set');
+function App() {
+  const [backendMessage, setBackendMessage] = useState('Loading from backend...');
 
   useEffect(() => {
-    const checkBackend = async () => {
-      try {
-        const response = await fetch(`${apiURL}/api/auth/login`);
-        if (!response.ok) throw new Error('Server responded with error');
-
-        const data = await response.json();
-        if (data.message) {
-          setBackendStatus('✅ Connected to backend!');
-          console.log('Backend message:', data.message);
-        } else {
-          setBackendStatus('⚠️ Unexpected response from backend.');
-        }
-      } catch (error) {
-        console.error('Connection error:', error);
-        setBackendStatus('❌ Failed to connect to backend.');
-      }
-    };
-
-    checkBackend();
-  }, [apiURL]);
+    fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`)
+      .then(res => res.json())
+      .then(data => setBackendMessage(data.message))
+      .catch(() => setBackendMessage('❌ Failed to connect to backend.'));
+  }, []);
 
   return (
-    <div style={{ fontFamily: 'Arial', padding: '2rem', textAlign: 'center' }}>
+    <div>
       <h1>👋 Welcome to FrameKit Frontend</h1>
-      <p>{backendStatus}</p>
-      <p><strong>Backend API:</strong> {apiURL}</p>
+      <p>{backendMessage}</p>
+      <p><strong>Backend API:</strong> {import.meta.env.VITE_API_URL}</p>
     </div>
   );
-};
+}
 
 export default App;
